@@ -2,7 +2,7 @@
   "name": "qjs",
   "version": "0.0.1",
   "description": "Web application framework that just works.",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ariadhanang/qjs/issues"
   },
-  "homepage": "https://github.com/ariadhanang/qjs#readme"
+  "homepage": "https://github.com/ariadhanang/qjs#readme",
+  "devDependencies": {
+    "webpack": "^5.55.1",
+    "webpack-cli": "^4.8.0"
+  }
 }
