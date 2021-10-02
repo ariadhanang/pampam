@@ -1,6 +1,6 @@
 {
 	"name": "pampam",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Simple and powerful front-end web application framework.",
 	"scripts": {
 		"test": "echo \"No test specified\"",
