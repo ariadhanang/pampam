@@ -28,7 +28,6 @@ export class Router {
 				}
 			}
 		}
-		console.log(this.routes);
 		callback();
 	}
 
@@ -62,8 +61,26 @@ export class Router {
 	renderView(route: Route) {
 		if (!route.hasParent) {
 			let root = document.getElementById("root");
+			if (!root) {
+				root = document.createElement("div");
+				root.id = "root";
+				document.body.appendChild(root);
+			}
 			root.innerHTML = route.template;
+			root.setAttribute("p-route", route.id.toString());
+		} else {
+			this.renderView(route.parent);
+			const parentElement = document.querySelector(`[p-route="${route.parentId}"]`);
+			if (parentElement) {
+				let slot = parentElement.querySelector(`[slot]`);
+				if (!slot) {
+					slot = document.createElement("div");
+					slot.setAttribute("slot", "");
+					parentElement.appendChild(slot);
+				}
+				slot.innerHTML = route.template;
+				slot.setAttribute("p-route", route.id.toString());
+			}
 		}
-		console.log(route.stack);
 	}
 }
