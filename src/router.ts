@@ -21,6 +21,7 @@ export class Router {
 				for (const child of route.children) {
 					let childroute = await Route.build(this, this.routes.length, {
 						...child,
+						path: newroute.path + child.path,
 						parentId: newroute.id
 					});
 					newroute.childrenIds.push(childroute.id);
