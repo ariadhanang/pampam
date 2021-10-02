@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<slot id="root"></slot>
+
+	<script src="./dist/q.js"></script>
+	<script>
+		var routes = [];
+		for (let i = 0; i < 10; i++) {
+			routes.push({ path: `/${i}`, templateUrl: `/templates/${i}.html` });
+		}
+		var module = new QModule("cendikia", routes);
+	</script>
+</body>
+
+</html>

@@ -1,1 +1,4 @@
-console.log("Hello, world!");
+import { Module } from "./module";
+
+// @ts-ignore
+window.Q = Module;
