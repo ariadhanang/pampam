@@ -1,7 +1,7 @@
 {
-	"name": "qjs",
+	"name": "q-js",
 	"version": "0.0.1",
-	"description": "Web application framework that just works.",
+	"description": "Simple and powerful front-end web application framework.",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "webpack",
@@ -9,7 +9,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ariadhanang/qjs.git"
+		"url": "git+https://github.com/ariadhanang/q-js.git"
 	},
 	"author": "Aria Dhanang",
 	"license": "UNLICENSED",
