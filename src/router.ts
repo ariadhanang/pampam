@@ -43,8 +43,8 @@ export class Router {
 		const route = this.findRoute(path);
 		if (route) {
 			if (window.location.pathname !== path) window.history.pushState({}, "", path);
-			this.renderView(route);
 			this.currentRoute = route;
+			this.renderView(route);
 		} else {
 			if (this.findRoute("/404")) {
 				this.navigate('/404');
@@ -66,7 +66,7 @@ export class Router {
 				root.id = "root";
 				document.body.appendChild(root);
 			}
-			root.innerHTML = route.template;
+			this.setInnerHTML(root, route.template);
 			root.setAttribute("p-route", route.id.toString());
 		} else {
 			this.renderView(route.parent);
@@ -78,9 +78,49 @@ export class Router {
 					slot.setAttribute("slot", "");
 					parentElement.appendChild(slot);
 				}
-				slot.innerHTML = route.template;
+				this.setInnerHTML(slot, route.template);
 				slot.setAttribute("p-route", route.id.toString());
 			}
 		}
 	}
+
+	setInnerHTML(container: HTMLElement | Element, content: string) {
+		container.innerHTML = content;
+		this.initElements();
+	}
+
+	initElements() {
+
+		// Initialize anchor tags
+		document.querySelectorAll("a").forEach(a => {
+			// Add/remove "active" class
+			a.classList.remove("active");
+			console.log(a.href);
+
+			if (a.href === window.location.href) a.classList.add("active");
+			// Handle click event
+			a.addEventListener("click", (e) => {
+				e.preventDefault();
+				// Same origin
+				if (a.host === window.location.host) {
+					// Hash
+					if (a.pathname[0] === "#") {
+						console.log("hash routing");
+					}
+					// Internal routing
+					else {
+						this.navigate(a.pathname);
+					}
+				}
+				// External origin
+				else {
+					window.open(a.href, "_blank").focus();
+				}
+
+			})
+		});
+
+	}
+
+
 }
